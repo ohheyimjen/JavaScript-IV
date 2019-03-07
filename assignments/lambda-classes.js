@@ -72,14 +72,24 @@ class Student extends Instructor {
      }
 }
 
-const newbie = new Student({
-    name: 'Ruby Rutherford',
-    age: 'A lady never tells',
-    location: 'El Paso',
+const learner1 = new Student({
+    name: 'Jo Mamma',
+    age: '19',
+    location: 'Orlando',
     gender:'F',
-    specialty: 'nesting',
-    favLanguage: 'Ruby',
-    catchPhrase: 'Rubies are a girls best friend'
+    specialty: 'testing',
+    favLanguage: 'TBD',
+    catchPhrase: 'I love Disney World'
+});
+
+const learner2 = new Student({
+    name: 'Will Smith',
+    age: '65',
+    location: 'Los Angeles',
+    gender:'M',
+    specialty: 'getting jiggy wit it',
+    favLanguage: 'whatevers fresh',
+    catchPhrase: 'Na na na na nana naaaaah'
 });
 
 console.log();
