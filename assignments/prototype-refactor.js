@@ -56,7 +56,7 @@ Prototype Refactor
     }
     takeDamage() {
         return `${this.name} took damage.`;
-    }
+    };
 
   }
   /*
@@ -86,7 +86,7 @@ Prototype Refactor
             this.weapons = character.weapons;
             this.language = character.language;
             }
-        greeting () {
+        greet () {
             return `${this.name} offers a greeting in ${this.language}.`;
         };
         }
