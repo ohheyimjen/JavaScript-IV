@@ -7,16 +7,29 @@ Prototype Refactor
 2. Your goal is to refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
 
 */
-function GameObject(object) {
-    this.createdAt = object.createdAt;
-    this.name = object.name;
-    this.dimensions = object.dimensions;
-  }
-    GameObject.prototype.destroy = function() {
-      return `${this.name} was removed from the game.`;
-    };
+
+// function GameObject(object) {
+//     this.createdAt = object.createdAt;
+//     this.name = object.name;
+//     this.dimensions = object.dimensions;
+//   }
+//     GameObject.prototype.destroy = function() {
+//       return `${this.name} was removed from the game.`;
+//     };
   
-  
+    class GameObject {
+
+        constructor(object) {
+
+        this.createdAt = object.createdAt;
+        this.name = object.name;
+        this.dimensions = object.dimensions;
+      }
+
+      destroy() {
+          return `${this.name} was removed from the game.`;
+      };
+    }
   /*
     === CharacterStats ===
     * healthPoints
@@ -24,16 +37,28 @@ function GameObject(object) {
     * should inherit destroy() from GameObject's prototype
   */
   
-  function CharacterStats(attributes) {
-    GameObject.call(this, attributes);
-    this.healthPoints = attributes.healthPoints;
+//   function CharacterStats(attributes) {
+//     GameObject.call(this, attributes);
+//     this.healthPoints = attributes.healthPoints;
+//   }
+  
+//   CharacterStats.prototype = Object.create(GameObject.prototype);
+  
+//   CharacterStats.prototype.takeDamage = function() {
+//     return `${this.name} took damage.`;
+//   };
+
+  class CharacterStats extends GameObject {
+
+    constructor(attributes) {
+        super(attributes);
+        this.healthPoints = attributes.healthPoints;
+    }
+    takeDamage() {
+        return `${this.name} took damage.`;
+    }
+
   }
-  
-  CharacterStats.prototype = Object.create(GameObject.prototype);
-  
-  CharacterStats.prototype.takeDamage = function() {
-    return `${this.name} took damage.`;
-  };
   /*
     === Humanoid (Having an appearance or character resembling that of a human.) ===
     * team
@@ -43,16 +68,29 @@ function GameObject(object) {
     * should inherit destroy() from GameObject through CharacterStats
     * should inherit takeDamage() from CharacterStats
   */
-  function Humanoid(character) {
-    CharacterStats.call(this, character);
-    this.team = character.team;
-    this.weapons = character.weapons;
-    this.language = character.language;
-    }
-    Humanoid.prototype.greet = function() {
-      return `${this.name} offers a greeting in ${this.language}.`;
-    };
+//   function Humanoid(character) {
+//     CharacterStats.call(this, character);
+//     this.team = character.team;
+//     this.weapons = character.weapons;
+//     this.language = character.language;
+//     }
+//     Humanoid.prototype.greet = function() {
+//       return `${this.name} offers a greeting in ${this.language}.`;
+//     };
    
+    class Humanoid extends CharacterStats {
+
+        constructor(character) {
+            super(character);
+            this.team = character.team;
+            this.weapons = character.weapons;
+            this.language = character.language;
+            }
+        greeting () {
+            return `${this.name} offers a greeting in ${this.language}.`;
+        };
+        }
+    
   /*
     * Inheritance chain: GameObject -> CharacterStats -> Humanoid
     * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
